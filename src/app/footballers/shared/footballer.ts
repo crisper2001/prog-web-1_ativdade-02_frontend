@@ -5,5 +5,5 @@ export class Footballer {
   birthplace!: String;
   position!: String;
   club!: String;
-  inActivity!: Boolean
+  inActivity!: Boolean;
 }

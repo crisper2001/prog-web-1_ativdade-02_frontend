@@ -25,4 +25,16 @@ export class FootballersListItemComponent {
 
   constructor(public footballerService: FootballerService) {
   }
+
+  delete(footballer: Footballer) {
+    this.footballerService.delete(footballer.id).subscribe({
+      next: value => {
+        alert("Excluído com sucesso!");
+        this.itemChange.emit(value);
+      },
+      error: error => {
+        alert(`Erro ao excluir:${error.error}`);
+      }
+    });
+  }
 }

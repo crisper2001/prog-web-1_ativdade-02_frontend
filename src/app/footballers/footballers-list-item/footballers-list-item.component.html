@@ -1,7 +1,19 @@
-<div>ID: {{footballer.id}}</div>
-<div>Nome: {{footballer.name}}</div>
-<div>Data de nascimento: {{footballer.birthday}}</div>
-<div>País: {{footballer.birthplace}}</div>
-<div>Posição: {{footballer.position}}</div>
-<div>Clube: {{footballer.club}}</div>
-<div>Em atividade: {{footballer.inActivity}}</div>
+<div class="footballer-item">
+  <div class="footballer-item-content">
+    <div>ID: {{footballer.id}}</div>
+    <div>Nome: {{footballer.name}}</div>
+    <div>Data de nascimento: {{footballer.birthday}}</div>
+    <div>País: {{footballer.birthplace}}</div>
+    <div>Posição: {{footballer.position}}</div>
+    <div>Clube: {{footballer.club}}</div>
+    <div>Em atividade: {{footballer.inActivity}}</div>
+  </div>
+  <div class="footbaler-actions">
+    <button type="button" [routerLink]="['/edit', footballer.id]" class="btn btn-primary mr-1">
+      Editar
+    </button>
+    <button type="button" class="btn btn-danger" (click)="delete(footballer)">
+      Excluir
+    </button>
+  </div>
+</div>

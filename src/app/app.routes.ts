@@ -10,5 +10,8 @@ export const routes: Routes = [
   },
   {
     path: 'new', component: FootballersFormComponent
+  },
+  {
+    path: 'edit/:id', component: FootballersFormComponent
   }
 ];
