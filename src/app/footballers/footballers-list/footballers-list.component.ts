@@ -29,6 +29,7 @@ export class FootballersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reload();
   }
 
   reload() {
