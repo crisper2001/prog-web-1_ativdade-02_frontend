@@ -4,6 +4,10 @@ import {FootballerService} from "../shared/footballer.service";
 import {NgClass} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {NotificationComponent} from "../../notification/notification.component";
 
 @Component({
   selector: 'app-footballers-list-item',
@@ -23,17 +27,43 @@ export class FootballersListItemComponent {
   @Output()
   itemChange: EventEmitter<Footballer> = new EventEmitter<Footballer>();
 
-  constructor(public footballerService: FootballerService) {
+  constructor(
+    public footballerService: FootballerService,
+    private snackBar : MatSnackBar,
+    public dialog: MatDialog) {
+  }
+
+  openDialog(footballer: Footballer) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { name: footballer }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.delete(footballer);
+      }
+    });
   }
 
   delete(footballer: Footballer) {
     this.footballerService.delete(footballer.id).subscribe({
       next: value => {
-        alert("Excluído com sucesso!");
+        this.snackBar.openFromComponent(NotificationComponent, {
+          duration: 5000,
+          data: { mensagem: 'Jogador apagado com sucesso!' },
+          verticalPosition: 'bottom',
+          horizontalPosition: 'left',
+        });
         this.itemChange.emit(value);
       },
       error: error => {
-        alert(`Erro ao excluir:${error.error}`);
+        this.snackBar.openFromComponent(NotificationComponent, {
+          duration: 5000,
+          data: { mensagem: 'Erro ao excluir jogador!' },
+          verticalPosition: 'bottom',
+          horizontalPosition: 'left',
+        });
       }
     });
   }

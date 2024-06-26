@@ -4,6 +4,9 @@ import {FootballerService} from "../shared/footballer.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FootballersListItemComponent} from "../footballers-list-item/footballers-list-item.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
+import {NotificationComponent} from "../../notification/notification.component";
 
 @Component({
   selector: 'app-footballers-list',
@@ -24,19 +27,29 @@ export class FootballersListComponent implements OnInit {
   constructor(
     public footballerService: FootballerService,
     route: ActivatedRoute,
+    private snackBar : MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.footballers = route.snapshot.data['footballersData'];
   }
 
   ngOnInit(): void {
-    this.reload();
+    this.reload(false);
   }
 
-  reload() {
+  reload(onClick : boolean) {
     this.footballers = [];
     this.footballerService.getAll().subscribe(value => {
       this.footballers = value;
     });
+    if (onClick) {
+      this.snackBar.openFromComponent(NotificationComponent, {
+        duration: 5000,
+        data: { mensagem: 'Recarregamento realizado com sucesso!' },
+        verticalPosition: 'bottom',
+        horizontalPosition: 'left',
+      });
+    }
   }
 
   refresh(footballer: Footballer) {
