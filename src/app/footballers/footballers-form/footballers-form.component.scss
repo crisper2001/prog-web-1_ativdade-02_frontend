@@ -7,3 +7,16 @@ button {
   margin-right: 0.25em
 }
 
+#form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

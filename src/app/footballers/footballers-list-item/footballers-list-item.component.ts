@@ -1,13 +1,15 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Footballer} from "../shared/footballer";
 import {FootballerService} from "../shared/footballer.service";
-import {NgClass} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NotificationComponent} from "../../notification/notification.component";
+import {MatIcon} from "@angular/material/icon";
+import {MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-footballers-list-item',
@@ -15,7 +17,10 @@ import {NotificationComponent} from "../../notification/notification.component";
   imports: [
     NgClass,
     RouterLink,
-    FormsModule
+    FormsModule,
+    NgIf,
+    MatIcon,
+    MatIconButton
   ],
   templateUrl: './footballers-list-item.component.html',
   styleUrl: './footballers-list-item.component.scss'

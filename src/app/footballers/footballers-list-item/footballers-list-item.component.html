@@ -1,19 +1,21 @@
 <div class="footballer-item">
   <div class="footballer-item-content">
-    <div>ID: {{footballer.id}}</div>
-    <div>Nome: {{footballer.name}}</div>
-    <div>Data de nascimento: {{footballer.birthday}}</div>
-    <div>País: {{footballer.birthplace}}</div>
-    <div>Posição: {{footballer.position}}</div>
-    <div>Clube: {{footballer.club}}</div>
-    <div>Em atividade: {{footballer.inActivity}}</div>
+    <div class="footballer-id">{{footballer.id}}</div>
+    <div class="footballer-name">{{footballer.name}}</div>
+    <div class="footballer-birthday">{{footballer.birthday}}</div>
+    <div class="footballer-birthplace">{{footballer.birthplace}}</div>
+    <div class="footballer-position">{{footballer.position}}</div>
+    <div class="footballer-club" *ngIf="footballer.club == ''">Sem clube</div>
+    <div class="footballer-club" *ngIf="footballer.club != ''">{{footballer.club}}</div>
+    <div class="footballer-activity" *ngIf="footballer.inActivity">Sim</div>
+    <div class="footballer-activity" *ngIf="!footballer.inActivity">Não</div>
   </div>
-  <div class="footbaler-actions">
-    <button type="button" [routerLink]="['/edit', footballer.id]" class="btn btn-primary mr-1">
-      Editar
+  <div class="footballer-actions">
+    <button mat-icon-button color="primary" [routerLink]="['/edit', footballer.id]">
+      <mat-icon>edit</mat-icon>
     </button>
-    <button type="button" class="btn btn-danger" (click)="openDialog(footballer)">
-      Excluir
+    <button mat-icon-button color="warn" (click)="openDialog(footballer)">
+      <mat-icon>delete</mat-icon>
     </button>
   </div>
 </div>

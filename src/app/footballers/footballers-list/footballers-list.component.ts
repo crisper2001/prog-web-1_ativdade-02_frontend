@@ -37,7 +37,7 @@ export class FootballersListComponent implements OnInit {
     this.reload(false);
   }
 
-  reload(onClick : boolean) {
+  reload(onClick: boolean) {
     this.footballers = [];
     this.footballerService.getAll().subscribe(value => {
       this.footballers = value;

@@ -6,7 +6,7 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -16,7 +16,8 @@ import {MatButton} from "@angular/material/button";
     MatButton,
     MatDialogContent,
     MatDialogTitle,
-    MatDialogActions
+    MatDialogActions,
+    MatIconButton
   ],
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.scss'
@@ -26,6 +27,10 @@ export class ConfirmDialogComponent {
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+  ngOnInit(): void {
+    this.dialogRef.updateSize('500px');
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
